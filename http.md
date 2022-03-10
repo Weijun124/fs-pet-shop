@@ -24,13 +24,13 @@ $ touch httpServer.js
 
 Your task is to build a Node server application that handles the following HTTP requests and sends back the correct HTTP response. Where appropriate, your application must read the correct data from the `pets.json` file and include it in the response body. Additionally, your application must send the appropriate response status code and `Content-Type` header.
 
-| Request Method | Request URL | Response Status | Response Content-Type | Response Body                                                                                              |
-|----------------|-------------|-----------------|-----------------------|------------------------------------------------------------------------------------------------------------|
+| Request Method | Request URL | Response Status | Response Content-Type | Response Body                                                                                         |
+| -------------- | ----------- | --------------- | --------------------- | ----------------------------------------------------------------------------------------------------- |
 | `GET`          | `/pets`     | `200`           | `application/json`    | `[{ "age": 7, "kind": "rainbow", "name": "fido" }, { "age": 5, "kind": "snake", "name": "Buttons" }]` |
 | `GET`          | `/pets/0`   | `200`           | `application/json`    | `{ "age": 7, "kind": "rainbow", "name": "fido" }`                                                     |
-| `GET`          | `/pets/1`   | `200`           | `application/json`    | `{ "age": 5, "kind": "snake", "name": "Buttons" }`                                                         |
-| `GET`          | `/pets/2`   | `404`           | `text/plain`          | `Not Found`                                                                                                |
-| `GET`          | `/pets/-1`  | `404`           | `text/plain`          | `Not Found`                                                                                                |
+| `GET`          | `/pets/1`   | `200`           | `application/json`    | `{ "age": 5, "kind": "snake", "name": "Buttons" }`                                                    |
+| `GET`          | `/pets/2`   | `404`           | `text/plain`          | `Not Found`                                                                                           |
+| `GET`          | `/pets/-1`  | `404`           | `text/plain`          | `Not Found`                                                                                           |
 
 To test your HTTP server, first install the `nodemon` package globally.
 
@@ -42,7 +42,7 @@ Start the HTTP server with `nodemon`.
 
 ```shell
 $ nodemon httpServer.js
-```
+```on -
 
 Open a new shell tab and install HTTPie.
 
@@ -86,7 +86,7 @@ You may find the following regular expression methods useful.
 Be mindful about responding to indices that don't exist in the database.
 
 | Request Method | Request URL         | Response Status | Response Content-Type | Response Body |
-|----------------|---------------------|-----------------|-----------------------|---------------|
+| -------------- | ------------------- | --------------- | --------------------- | ------------- |
 | `GET`          | `/pets/9000`        | `404`           | `text/plain`          | `Not Found`   |
 | `GET`          | `/pets/abracadabra` | `404`           | `text/plain`          | `Not Found`   |
 
@@ -95,7 +95,7 @@ Be mindful about responding to indices that don't exist in the database.
 Add a catch all route handler for unknown HTTP requests and send the appropriate response.
 
 | Request Method | Request URL | Response Status | Response Content-Type | Response Body |
-|----------------|-------------|-----------------|-----------------------|---------------|
+| -------------- | ----------- | --------------- | --------------------- | ------------- |
 | `GET`          | `/`         | `404`           | `text/plain`          | `Not Found`   |
 | `GET`          | `/blah`     | `404`           | `text/plain`          | `Not Found`   |
 
@@ -111,7 +111,7 @@ Convert the code in your `server.js` file into ES6 syntax. It may be helpful to 
 In future parts of this assignment, your server will need to handle create, update, and destroy HTTP commands. For now, add a route handler that responds to create commands by adding new pets to the database.
 
 | Request Method | Request URL | Request Body                                            | Response Status | Response Content-Type | Response Body                                           |
-|----------------|-------------|---------------------------------------------------------|-----------------|-----------------------|---------------------------------------------------------|
+| -------------- | ----------- | ------------------------------------------------------- | --------------- | --------------------- | ------------------------------------------------------- |
 | `POST`         | `/pets`     | `{ "name": "Cornflake", "age": 3, "kind": "parakeet" }` | `200`           | `application/json`    | `{ "name": "Cornflake", "age": 3, "kind": "parakeet" }` |
 | `GET`          | `/pets/3`   | N/A                                                     | `200`           | `application/json`    | `{ "name": "Cornflake", "age": 3, "kind": "parakeet" }` |
 
@@ -124,7 +124,7 @@ http POST http://localhost:8000/pets age=3 kind=parakeet name=Cornflake
 If `age`, `kind`, or `name` are missing from the HTTP request body or `age` is not an integer, then the data must not be added to the database and the server must send back the follow HTTP response.
 
 | Request Method | Request URL | Request Body                               | Response Status | Response Content-Type | Response Body |
-|----------------|-------------|--------------------------------------------|-----------------|-----------------------|---------------|
+| -------------- | ----------- | ------------------------------------------ | --------------- | --------------------- | ------------- |
 | `POST`         | `/pets`     | `{ "name": "", "age": "two", "kind": "" }` | `400`           | `text/plain`          | `Bad Request` |
 | `GET`          | `/pets/4`   | N/A                                        | `404`           | `text/plain`          | `Not Found`   |
 
